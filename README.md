@@ -98,10 +98,10 @@ For more details, see the "Exporting to IDEs" section of the ModusToolbox User G
 
 7. Ensure that the Python interpreter (see **Software Setup**) is installed on your computer.
 
-8. Open a command shell from the project directory and run the Python UDP server (*udp_server.py*) with the IP address from step 5 as argument through the option *--hostname*, as given below. Note that script will not run in the *modus-shell*. In the command shell opened in the project directory, type in the following command:
+8. Open a command shell from the project directory and run the Python UDP server (*udp_server.py*).  In the command shell opened in the project directory, type in the following command:
 
    ```
-   python udp_server.py --hostname 192.168.1.107
+   python udp_server.py
    ```
 
    **Note:** Ensure that the firewall settings of your computer allow access to the Python software so that it can communicate with the UDP client. For more details on enabling Python access, see this community [thread](https://community.cypress.com/thread/53662).
@@ -217,6 +217,7 @@ Document Title: CE230437 - AnyCloud Example: UDP Client
 | Version | Description of Change |
 | ------- | --------------------- |
 | 1.0.0   | New code example      |
+| 1.1.0   | Updated udp_server.py to use localhost by default|
 
 ------
 

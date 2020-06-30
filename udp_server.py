@@ -44,7 +44,7 @@ import optparse
 import time
 import sys
 
-DEFAULT_IP   = '192.168.43.154'   # IP address of the UDP server
+DEFAULT_IP   = socket.gethostbyname(socket.gethostname())   # IP address of the UDP server
 DEFAULT_PORT = 50007             # Port of the UDP server
 
 LED_ON = '1'
