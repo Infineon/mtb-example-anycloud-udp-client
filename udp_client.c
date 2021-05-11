@@ -41,6 +41,7 @@
 #include "cyhal.h"
 #include "cybsp.h"
 #include "cy_retarget_io.h"
+#include <inttypes.h>
 
 /* FreeRTOS header file. */
 #include <FreeRTOS.h>
@@ -158,7 +159,7 @@ void udp_client_task(void *arg)
     }
     else
     {
-        printf("Failed to send data to server. Error : %ld", result);
+        printf("Failed to send data to server. Error : %"PRIu32"\n", result);
     }
 
     while(true)
@@ -180,7 +181,7 @@ void udp_client_task(void *arg)
                                         &udp_server_addr, sizeof(cy_socket_sockaddr_t), &bytes_sent);
             if(result != CY_RSLT_SUCCESS)
             {
-                printf("Failed to send Acknowledgment to server. Error: %ld", result);
+                printf("Failed to send Acknowledgment to server. Error: %"PRIu32"\n", result);
             }
         }
         else if(led_state_ack == LED_OFF_CMD)
@@ -194,7 +195,7 @@ void udp_client_task(void *arg)
                                         &udp_server_addr, sizeof(cy_socket_sockaddr_t), &bytes_sent);
             if(result != CY_RSLT_SUCCESS)
             {
-                printf("Failed to send acknowledgment to server. Error: %ld", result);
+                printf("Failed to send acknowledgment to server. Error: %"PRIu32"\n", result);
             }
         }
         else
@@ -204,7 +205,7 @@ void udp_client_task(void *arg)
                                         &udp_server_addr, sizeof(cy_socket_sockaddr_t), &bytes_sent);
             if(result != CY_RSLT_SUCCESS)
             {
-                printf("Failed to send acknowledgment to server. Error: %ld", result);
+                printf("Failed to send acknowledgment to server. Error: %"PRIu32"\n", result);
             }
         }
     }
