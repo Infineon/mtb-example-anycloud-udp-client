@@ -85,6 +85,7 @@
 static cy_rslt_t create_udp_client_socket(void);
 static cy_rslt_t udp_client_recv_handler(cy_socket_t socket_handle, void *arg);
 static cy_rslt_t connect_to_wifi_ap(void);
+void print_heap_usage(char* msg);
 
 /*******************************************************************************
 * Global Variables
@@ -208,6 +209,8 @@ void udp_client_task(void *arg)
                 printf("Failed to send acknowledgment to server. Error: %"PRIu32"\n", result);
             }
         }
+        
+        print_heap_usage("After controlling the LED and ACKing the server");
     }
  }
 

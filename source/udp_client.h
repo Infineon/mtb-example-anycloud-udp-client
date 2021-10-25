@@ -1,12 +1,8 @@
 /******************************************************************************
-* File Name:   main.c
+* File Name:   udp_client.h
 *
-* Description: This is the source code for UDP Client Example in ModusToolbox.
-*              The example establishes a connection with a remote UDP server
-*              and based on the command received from the UDP server, turns
-*              the user LED ON or OFF.
-*
-* Related Document: See README.md
+* Description: This file contains declaration of task related to UDP client
+*              operation.
 *
 ********************************************************************************
 * Copyright 2020-2021, Cypress Semiconductor Corporation (an Infineon company) or
@@ -41,85 +37,48 @@
 * so agrees to indemnify Cypress against all liability.
 *******************************************************************************/
 
-/* Header file includes. */
-#include "cyhal.h"
-#include "cybsp.h"
-#include "cy_retarget_io.h"
-
-/* FreeRTOS header file. */
-#include <FreeRTOS.h>
-#include <task.h>
-
-/* UDP client task header file. */
-#include "udp_client.h"
+#ifndef UDP_CLIENT_H_
+#define UDP_CLIENT_H_
 
 /*******************************************************************************
 * Macros
 ********************************************************************************/
-/* RTOS related macros. */
-#define UDP_CLIENT_TASK_STACK_SIZE        (5 * 1024)
-#define UDP_CLIENT_TASK_PRIORITY          (1)
+/* Wi-Fi Credentials: Modify WIFI_SSID, WIFI_PASSWORD and WIFI_SECURITY_TYPE
+ * to match your Wi-Fi network credentials.
+ * Note: Maximum length of the Wi-Fi SSID and password is set to
+ * CY_WCM_MAX_SSID_LEN and CY_WCM_MAX_PASSPHRASE_LEN as defined in cy_wcm.h file.
+ */
+
+#define WIFI_SSID                         "MY_WIFI_SSID"
+#define WIFI_PASSWORD                     "MY_WIFI_PASSWORD"
+
+/* Security type of the Wi-Fi access point. See 'cy_wcm_security_t' structure
+ * in "cy_wcm.h" for more details.
+ */
+#define WIFI_SECURITY_TYPE                 CY_WCM_SECURITY_WPA2_AES_PSK
+
+/* Maximum number of connection retries to the Wi-Fi network. */
+#define MAX_WIFI_CONN_RETRIES             (10u)
+
+/* Wi-Fi re-connection time interval in milliseconds */
+#define WIFI_CONN_RETRY_INTERVAL_MSEC     (1000)
+
+#define MAKE_IPV4_ADDRESS(a, b, c, d)     ((((uint32_t) d) << 24) | \
+                                          (((uint32_t) c) << 16) | \
+                                          (((uint32_t) b) << 8) |\
+                                          ((uint32_t) a))
+
+/* Change the server IP address to match the UDP server address (IP address
+ * of the PC).
+ */
+#define UDP_SERVER_IP_ADDRESS             MAKE_IPV4_ADDRESS(192, 168, 1, 107)
+#define UDP_SERVER_PORT                   (57345)
 
 /*******************************************************************************
-* Global Variables
+* Function Prototype
 ********************************************************************************/
-/* This enables RTOS aware debugging. */
-volatile int uxTopUsedPriority;
+void udp_client_task(void *arg);
 
-/* UDP server task handle. */
-TaskHandle_t client_task_handle;
-
-/*******************************************************************************
-* Function Name: main
-********************************************************************************
-* Summary:
-*  System entrance point. This function sets up user tasks and then starts
-*  the RTOS scheduler.
-*
-* Parameters:
-*  void
-*
-* Return:
-*  int
-*
-*******************************************************************************/
-int main(void)
-{
-    cy_rslt_t result;
-
-    /* This enables RTOS aware debugging in OpenOCD. */
-    uxTopUsedPriority = configMAX_PRIORITIES - 1;
-
-    /* Initialize the device and board peripherals */
-    result = cybsp_init() ;
-    if (result != CY_RSLT_SUCCESS)
-    {
-        CY_ASSERT(0);
-    }
-
-    /* Enable global interrupts */
-    __enable_irq();
-
-    /* Initialize retarget-io to use the debug UART port */
-    cy_retarget_io_init(CYBSP_DEBUG_UART_TX, CYBSP_DEBUG_UART_RX, CY_RETARGET_IO_BAUDRATE);
-
-    /* Initialize the User LED */
-    cyhal_gpio_init(CYBSP_USER_LED, CYHAL_GPIO_DIR_OUTPUT, CYHAL_GPIO_DRIVE_STRONG, CYBSP_LED_STATE_OFF);
-
-    /* \x1b[2J\x1b[;H - ANSI ESC sequence to clear screen. */
-    printf("\x1b[2J\x1b[;H");
-    printf("============================================================\n");
-    printf("CE230437 - AnyCloud Example: UDP Client\n");
-    printf("============================================================\n\n");
-
-    /* Create the tasks. */
-    xTaskCreate(udp_client_task, "Network task", UDP_CLIENT_TASK_STACK_SIZE, NULL,
-                UDP_CLIENT_TASK_PRIORITY, &client_task_handle);
-    /* Start the FreeRTOS scheduler. */
-    vTaskStartScheduler();
-
-    /* Should never get here. */
-    CY_ASSERT(0);
-}
+#endif /* UDP_CLIENT_H_ */
 
 /* [] END OF FILE */
