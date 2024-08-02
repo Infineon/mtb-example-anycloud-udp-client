@@ -6,7 +6,7 @@ This example uses the Wi-Fi Core FreeRTOS lwIP mbedtls library of the SDK. This 
 
 [View this README on GitHub.](https://github.com/Infineon/mtb-example-wifi-udp-client)
 
-[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzA0MzciLCJTcGVjIE51bWJlciI6IjAwMi0zMDQzNyIsIkRvYyBUaXRsZSI6IlVEUCBjbGllbnQiLCJyaWQiOiJzZGFrIiwiRG9jIHZlcnNpb24iOiI0LjEuMCIsIkRvYyBMYW5ndWFnZSI6IkVuZ2xpc2giLCJEb2MgRGl2aXNpb24iOiJNQ0QiLCJEb2MgQlUiOiJJQ1ciLCJEb2MgRmFtaWx5IjoiUFNPQyJ9)
+[Provide feedback on this code example.](https://cypress.co1.qualtrics.com/jfe/form/SV_1NTns53sK2yiljn?Q_EED=eyJVbmlxdWUgRG9jIElkIjoiQ0UyMzA0MzciLCJTcGVjIE51bWJlciI6IjAwMi0zMDQzNyIsIkRvYyBUaXRsZSI6IlVEUCBjbGllbnQiLCJyaWQiOiJuYW5qdW5ndWRzdXIiLCJEb2MgdmVyc2lvbiI6IjQuMi4wIiwiRG9jIExhbmd1YWdlIjoiRW5nbGlzaCIsIkRvYyBEaXZpc2lvbiI6Ik1DRCIsIkRvYyBCVSI6IklDVyIsIkRvYyBGYW1pbHkiOiJQU09DIn0=)
 
 
 ## Requirements
@@ -32,7 +32,7 @@ This example uses the Wi-Fi Core FreeRTOS lwIP mbedtls library of the SDK. This 
 - [PSoC&trade; 62S1 Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CYW9P62S1-43012EVB-01) (`CYW9P62S1-43012EVB-01`)
 - [PSoC&trade; 62S3 Wi-Fi Bluetooth&reg; prototyping kit](https://www.infineon.com/CY8CPROTO-062S3-4343W) (`CY8CPROTO-062S3-4343W`)
 - [PSoC&trade; 64 "Secure Boot" Wi-Fi Bluetooth&reg; pioneer kit](https://www.infineon.com/CY8CKIT-064B0S2-4343W) (`CY8CKIT-064B0S2-4343W`)
-- [PSoC&trade; 62S2 evaluation kit](https://www.infineon.com/CY8CEVAL-062S2) (`CY8CEVAL-062S2-LAI-4373M2`, `CY8CEVAL-062S2-MUR-43439M2`,`CY8CEVAL-062S2-CYW43022CUB`)
+- [PSoC&trade; 62S2 evaluation kit](https://www.infineon.com/CY8CEVAL-062S2) (`CY8CEVAL-062S2-LAI-4373M2`, `CY8CEVAL-062S2-MUR-43439M2`,`CY8CEVAL-062S2-CYW43022CUB`, `CY8CEVAL-062S2-CYW955513SDM2WLIPA`)
 - CYSBSYSKIT-01 Rapid IoT connect platform RP01 feather kit (`CYSBSYSKIT-01`)
 - Rapid IoT connect developer kit (`CYSBSYSKIT-DEV-01`)
 
@@ -298,6 +298,7 @@ Document title: *CE230437* - *UDP client*
  3.1.0   | Removed target specific macros from the source code
  4.0.0   | Major update to support ModusToolbox&trade; v3.0 and BSPs   v4.X. This version is not backward compatible with previous versions of ModusToolbox&trade;
  4.1.0   | Added support for CY8CEVAL-062S2-CYW43022CUB
+ 4.2.0   |  Added support for CY8CEVAL-062S2-CYW955513SDM2WLIPA
 <br />
 
 
